@@ -28,14 +28,14 @@ app.get('*', (req, res) =>
 
 app.post('/api/notes', (req, res) => {
     console.log('post, req.body= ', req.body)
-    let exsistingNotes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+    let existingNotes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
     let note = req.body;
-    let newId = exsistingNotes.length.toString();
+    let newId = existingNotes.length.toString();
     note.id = newId;
-    exsistingNotes.push(note);
+    existingNotes.push(note);
 
-    fs.writeFileSync('./db/db.json', JSON.stringify(exsistingNotes));
-    res.json(exsistingNotes);
+    fs.writeFileSync('./db/db.json', JSON.stringify(existingNotes));
+    res.json(existingNotes);
 })
 
 app.listen(PORT, () =>
